@@ -5,8 +5,8 @@ import 'package:notes_app/modal_class/notes.dart';
 import 'package:notes_app/screens/note_detail.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notes_app/screens/search_note.dart';
+import 'package:notes_app/screens/settings.dart';
 import 'package:notes_app/utils/widgets.dart';
-import 'package:sqflite/sqflite.dart';
 
 class NoteList extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class NoteListState extends State<NoteList> {
 
     Widget myAppBar() {
       return AppBar(
-        title: Text('Notes', style: Theme.of(context).textTheme.headline5),
+        title: Text('笔记', style: Theme.of(context).textTheme.headline5),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -45,7 +45,7 @@ class NoteListState extends State<NoteList> {
                   final Note result = await showSearch(
                       context: context, delegate: NotesSearch(notes: noteList));
                   if (result != null) {
-                    navigateToDetail(result, 'Edit Note');
+                    navigateToDetail(result, '编辑笔记');
                   }
                 },
               ),
@@ -62,7 +62,16 @@ class NoteListState extends State<NoteList> {
                       axisCount = axisCount == 2 ? 4 : 2;
                     });
                   },
-                )
+                ),
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              navigateToSettings();
+            },
+          )
         ],
       );
     }
@@ -75,7 +84,7 @@ class NoteListState extends State<NoteList> {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text('Click on the add button to add a new note!',
+                  child: Text('点击添加按钮添加新的笔记!',
                       style: Theme.of(context).textTheme.bodyText2),
                 ),
               ),
@@ -86,9 +95,9 @@ class NoteListState extends State<NoteList> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToDetail(Note('', '', 3, 0), 'Add Note');
+          navigateToDetail(Note('', '', 3, 0), '新建笔记');
         },
-        tooltip: 'Add Note',
+        tooltip: '新建笔记',
         shape: CircleBorder(side: BorderSide(color: Colors.black, width: 2.0)),
         child: Icon(Icons.add, color: Colors.black),
         backgroundColor: Colors.white,
@@ -103,7 +112,7 @@ class NoteListState extends State<NoteList> {
       itemCount: count,
       itemBuilder: (BuildContext context, int index) => GestureDetector(
         onTap: () {
-          navigateToDetail(this.noteList[index], 'Edit Note');
+          navigateToDetail(this.noteList[index], '编辑笔记');
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -225,16 +234,29 @@ class NoteListState extends State<NoteList> {
     }
   }
 
+  void navigateToSettings() async {
+    await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SettingsPage()));
+    updateListView();
+  }
+
   void updateListView() {
-    final Future<Database> dbFuture = databaseHelper.initializeDatabase();
-    dbFuture.then((database) {
-      Future<List<Note>> noteListFuture = databaseHelper.getNoteList();
-      noteListFuture.then((noteList) {
-        setState(() {
-          this.noteList = noteList;
-          this.count = noteList.length;
-        });
+    Future<List<Note>> noteListFuture = databaseHelper.getNoteList();
+    noteListFuture.then((noteList) {
+      setState(() {
+        this.noteList = noteList;
+        this.count = noteList.length;
       });
     });
+    // final Future<Database> dbFuture = databaseHelper.initializeDatabase();
+    // dbFuture.then((database) {
+    //   Future<List<Note>> noteListFuture = databaseHelper.getNoteList();
+    //   noteListFuture.then((noteList) {
+    //     setState(() {
+    //       this.noteList = noteList;
+    //       this.count = noteList.length;
+    //     });
+    //   });
+    // });
   }
 }

@@ -102,7 +102,7 @@ class NoteDetailState extends State<NoteDetail> {
                       updateTitle();
                     },
                     decoration: InputDecoration.collapsed(
-                      hintText: 'Title',
+                      hintText: '标题',
                     ),
                   ),
                 ),
@@ -119,7 +119,7 @@ class NoteDetailState extends State<NoteDetail> {
                         updateDescription();
                       },
                       decoration: InputDecoration.collapsed(
-                        hintText: 'Description',
+                        hintText: '正文',
                       ),
                     ),
                   ),
@@ -138,14 +138,14 @@ class NoteDetailState extends State<NoteDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Discard Changes?",
+            "放弃修改?",
             style: Theme.of(context).textTheme.bodyText2,
           ),
-          content: Text("Are you sure you want to discard changes?",
+          content: Text("确认要放弃当前修改内容吗?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
-              child: Text("No",
+              child: Text("不要",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2
@@ -155,7 +155,7 @@ class NoteDetailState extends State<NoteDetail> {
               },
             ),
             TextButton(
-              child: Text("Yes",
+              child: Text("放弃",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2
@@ -179,14 +179,14 @@ class NoteDetailState extends State<NoteDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Title is empty!",
+            "标题为空!",
             style: Theme.of(context).textTheme.bodyText2,
           ),
-          content: Text('The title of the note cannot be empty.',
+          content: Text('笔记标题不能为空.',
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
-              child: Text("Okay",
+              child: Text("好的",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2
@@ -209,14 +209,14 @@ class NoteDetailState extends State<NoteDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Delete Note?",
+            "删除笔记?",
             style: Theme.of(context).textTheme.bodyText2,
           ),
-          content: Text("Are you sure you want to delete this note?",
+          content: Text("确定要删除这篇笔记吗?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
-              child: Text("No",
+              child: Text("不要",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2
@@ -226,7 +226,7 @@ class NoteDetailState extends State<NoteDetail> {
               },
             ),
             TextButton(
-              child: Text("Yes",
+              child: Text("删除",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2

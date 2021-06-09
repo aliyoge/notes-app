@@ -13,6 +13,9 @@ dependencies:
   path_provider: 2.0.1
   intl: 0.17.0
   flutter_staggered_grid_view: 0.4.0
+  shared_preferences: ^2.0.6
+  postgres: ^2.3.2
+  flutter_webview_plugin: ^0.4.0
 
 dev_dependencies:
   flutter_test:

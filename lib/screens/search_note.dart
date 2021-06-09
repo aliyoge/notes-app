@@ -68,7 +68,7 @@ class NotesSearch extends SearchDelegate<Note> {
               ),
             ),
             Text(
-              'Enter a note to search.',
+              '输入关键字搜索笔记',
               style: TextStyle(color: Colors.black),
             )
           ],
@@ -95,7 +95,7 @@ class NotesSearch extends SearchDelegate<Note> {
                 ),
               ),
               Text(
-                'No results found',
+                '没有找到任何内容',
                 style: TextStyle(color: Colors.black),
               )
             ],
@@ -164,7 +164,7 @@ class NotesSearch extends SearchDelegate<Note> {
               ),
             ),
             Text(
-              'Enter a note to search.',
+              '输入关键字搜索笔记',
               style: TextStyle(color: Colors.black),
             )
           ],
@@ -191,7 +191,7 @@ class NotesSearch extends SearchDelegate<Note> {
                 ),
               ),
               Text(
-                'No results found',
+                '没有找到任何内容',
                 style: TextStyle(color: Colors.black),
               )
             ],
