@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/screens/note_list.dart';
+import 'package:oktoast/oktoast.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
               fontSize: 14),
         ),
       ),
-      home: NoteList(),
+      home: OKToast(child: NoteList()),
     );
   }
 }

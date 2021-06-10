@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:notes_app/db_helper/local_db_helper.dart';
 import 'package:notes_app/utils/keys.dart';
 import 'package:notes_app/modal_class/notes.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:postgres/postgres.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -67,9 +69,19 @@ class DatabaseHelper {
       return null;
     }
 
-    var connection = PostgreSQLConnection(dbIp, dbPort, dbName,
-        username: dbAccount, password: dbPasswd);
-    await connection.open();
+    PostgreSQLConnection connection;
+
+    try {
+      connection = PostgreSQLConnection(dbIp, dbPort, dbName,
+          username: dbAccount, password: dbPasswd);
+      await connection.open();
+    } catch (e) {
+      connection = null;
+      showToast(e.toString(), duration: Duration(seconds: 5));
+      print(e);
+    }
+
+    if (connection == null) return null;
 
     try {
       await connection.execute("""
@@ -155,6 +167,21 @@ class DatabaseHelper {
     }
 
     return noteList;
+  }
+
+  void _showDialog(String text, BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            content: Text(text),
+          );
+        });
   }
 
   String getUpdateSql(

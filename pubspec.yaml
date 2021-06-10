@@ -16,6 +16,7 @@ dependencies:
   shared_preferences: ^2.0.6
   postgres: ^2.3.2
   flutter_webview_plugin: ^0.4.0
+  oktoast: ^3.0.0
 
 dev_dependencies:
   flutter_test:
