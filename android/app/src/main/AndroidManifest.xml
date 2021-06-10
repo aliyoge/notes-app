@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bimsina.notes_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Note Keeper"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:networkSecurityConfig="@xml/network_config">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
